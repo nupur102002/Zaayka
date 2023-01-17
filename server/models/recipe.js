@@ -10,7 +10,7 @@ const recipeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  photo: {         // will be in url form
+  video: {         // will be in url form
     type: String, 
     required: true,
   },

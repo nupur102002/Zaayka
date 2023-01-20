@@ -19,10 +19,12 @@ mongoose.connection.on('err',(err)=>{
 });
 
  require('./models/user');
-
+ require("./models/recipe");
  app.use(express.json());
 
  app.use(require('./routes/auth'));
+ app.use(require('./routes/recipe'));
+ 
 
 app.listen(PORT,()=>{
     console.log("Server is running at port 5000");

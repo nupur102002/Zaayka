@@ -53,3 +53,5 @@ router.get("/myrecipe",requireLogin,(req,res)=>{
         console.log(err)
     })
 })
+
+module.exports=router;

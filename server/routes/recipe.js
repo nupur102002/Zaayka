@@ -20,8 +20,8 @@ router.get("/allrecipe",requireLogin,(req,res)=>{
 
 //Create new recipe 
 router.post("/createrecipe",requireLogin,(req,res)=>{
-    const {title,body}=req.body;
-    if(!title || !body )
+    const {title,body,vid}=req.body;
+    if(!title || !body || !vid )
     {
         return res.status(422).json({error :"Please add all the fields"});
     }
@@ -30,6 +30,7 @@ router.post("/createrecipe",requireLogin,(req,res)=>{
     const recipe=new Recipe({
         title,
         body,
+        video:vid,
         postedBy:req.user
     })
     recipe.save().then(result=>{

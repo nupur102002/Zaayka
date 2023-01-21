@@ -1,10 +1,12 @@
   // eslint-disable-next-line
-  import React,{useState}  from "react";
-  import {Link,useNavigate} from "react-router-dom"
+  import React,{useState,useContext}  from "react";
+  import {Link,useNavigate} from "react-router-dom";
+  import { UserContext } from "../../App";
   
   import M from "materialize-css"
 
 const Login=()=>{
+  const {state,dispatch} = useContext(UserContext)
   const navigate = useNavigate();        /*instead of useHistory */
   const [password,setPassword]=useState("")
   const [email,setEmail]=useState("")

@@ -20,8 +20,8 @@ router.get("/allrecipe",requireLogin,(req,res)=>{
 
 //Create new recipe 
 router.post("/createrecipe",requireLogin,(req,res)=>{
-    const {title,body,vid}=req.body;
-    if(!title || !body || !vid )
+    const {title,body,pic}=req.body;
+    if(!title || !body || !pic )
     {
         return res.status(422).json({error :"Please add all the fields"});
     }
@@ -30,7 +30,7 @@ router.post("/createrecipe",requireLogin,(req,res)=>{
     const recipe=new Recipe({
         title,
         body,
-        video:vid,
+        photo:pic,
         postedBy:req.user
     })
     recipe.save().then(result=>{
@@ -47,7 +47,7 @@ router.get("/myrecipe",requireLogin,(req,res)=>{
     Recipe.find({postedBy: req.user._id})  
     .populate("postedBy","_id name")  //it will expand only _id and name
     .then(myrecipe=>{
-        res.json({recipe:recipe})
+        res.json({myrecipe})
     })
     .catch(err=>{
         console.log(err)

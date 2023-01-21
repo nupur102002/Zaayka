@@ -1,61 +1,45 @@
-import React  from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { UserContext } from '../../App';
+import { Link } from "react-router-dom";
 
-const home=()=>{
+const Home = () => {
+    const [data, setData] = useState([])
+    useEffect(() => {
+        fetch('/allrecipe', {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
+            }
+        }).then(res => res.json())
+            .then(result => {
+                setData(result.recipes)
+            })
+    }, [])
     return (
+        
         <div className="home">
-
-        <div className="card home-card"> 
-        <h5> Hrithik Roshan</h5>
-        {/* 2 div (1. image & 2.caption) */}
-            <div className="card-image"> 
-            <img 
-                src="https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg"
-            />
-           </div>
-           <div className="card-content">
-           <i className="material-icons" style={{color:"red"}}>favorite</i>
-           <h6>title</h6>
-           <p>This is caption</p>
-           <input  type="text" placeholder="add a comment" />
-          </div>
-
-        </div>
-        <div className="card home-card"> 
-        <h5> Hrithik Roshan</h5>
-        {/* 2 div (1. image & 2.caption) */}
-            <div className="card-image"> 
-            <img 
-                src="https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg"
-            />
-           </div>
-           <div className="card-content">
-           <i className="material-icons" style={{color:"red"}}>favorite</i>
-           <h6>title</h6>
-           <p>This is caption</p>
-           <input  type="text" placeholder="add a comment" />
-          </div>
-
-        </div>
-        <div className="card home-card"> 
-     
-        <h5> Hrithik Roshan</h5>
-        {/* 2 div (1. image & 2.caption) */}
-            <div className="card-image"> 
-            <img 
-                src="https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg"
-            />
-           </div>
-           <div className="card-content">
-           <i className="material-icons" style={{color:"red"}}>favorite</i>
-           <h6>title</h6>
-           <p>This is caption</p>
-           <input  type="text" placeholder="add a comment" />
-          </div>
-
-        </div>
+            {
+                data.map(item => {
+                    return (
+                        <div className="card home-card" key={item._id}>
+                            <h5>{item.postedBy.name}</h5>
+                            {/* 2 div (1. image & 2.caption) */}
+                            <div className="card-image">
+                                <img
+                                    src={item.photo} alt="Loading.."
+                                />
+                            </div>
+                            <div className="card-content">
+                                <i className="material-icons" style={{ color: "red" }}>favorite</i>
+                                <h6>{item.title}</h6>
+                                <p>{item.body}</p>
+                                <input type="text" placeholder="add a comment" />
+                            </div>
+                        </div>
+                    )
+                })
+            }
 
         </div>
     )
 }
-
-export default home;
+export default Home;

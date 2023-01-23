@@ -20,6 +20,7 @@ const NavBar=()=>{
           localStorage.clear()
           dispatch({type:"CLEAR"})
           navigate('/login')
+          window.location.reload();
         }}>
               Logout
                  </button>

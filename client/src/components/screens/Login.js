@@ -37,6 +37,7 @@ const Login=()=>{
       localStorage.setItem("user",JSON.stringify(data.user))
       M.toast({html:"success",classes:"#43a047 green darken-1"})
       navigate('/');
+      window.location.reload();
      }
   }).catch(err=>{
       console.log(err)

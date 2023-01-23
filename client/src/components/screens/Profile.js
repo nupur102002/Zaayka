@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { UserContext } from "../../App";
+import {DefaultPlayer as Video} from "react-html5video"
+import "react-html5video/dist/styles.css"
 
 const Profile = () => {
     const [mypics, setPics] = useState([])
@@ -51,7 +53,9 @@ return (
             {
                 mypics.map(item => {
                     return (
-                        <img key={item._id} className="item" src={item.photo} alt={item.title} />
+                        <Video key={item._id} className="item">
+                               <source  src={item.photo} alt={item.title} type="video/webm" />
+                        </Video>
                     )
                 })
             }

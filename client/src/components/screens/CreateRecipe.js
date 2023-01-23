@@ -6,7 +6,7 @@ const CreateRecipe = () => {
   const navigate = useNavigate()
   const [title, setTitle] = useState("")
   const [body, setBody] = useState("")
-  const [image, setImage] = useState("")
+  const [video, setVideo] = useState("")
   const [url, setUrl] = useState("")
   useEffect(() => {
     if (url) {
@@ -40,10 +40,10 @@ const CreateRecipe = () => {
   }, [url])
   const recipeDetails = () => {
     const data = new FormData();
-    data.append("file", image)
+    data.append("file", video)
     data.append("upload_preset", "zaayka")
     data.append("cloud_name", "dkp8phxth")             
-    fetch("https://api.cloudinary.com/v1_1/dkp8phxth/image/upload", {    /**"https://api.cloudinary.com/v1_1/zaayka" - api base url   */
+    fetch("https://api.cloudinary.com/v1_1/dkp8phxth/video/upload", {    /**"https://api.cloudinary.com/v1_1/zaayka" - api base url   */
       method: "post",
       body: data
     })
@@ -82,7 +82,7 @@ const CreateRecipe = () => {
       <div className="file-field input-field">
         <div className="btn waves-effect waves-light #64b5f6 blue darken-1">
           <span>Upload image</span>
-          <input type="file" onChange={(e) => setImage(e.target.files[0])} />
+          <input type="file" onChange={(e) => setVideo(e.target.files[0])} />
         </div>
         <div className="file-path-wrapper">
           <input className="file-path validate" type="text" />

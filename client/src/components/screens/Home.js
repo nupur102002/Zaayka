@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from '../../App';
 import { Link } from "react-router-dom";
-
+import {DefaultPlayer as Video} from "react-html5video"
+import "react-html5video/dist/styles.css"
 const Home = () => {
     const [data, setData] = useState([])
     useEffect(() => {
@@ -24,9 +25,9 @@ const Home = () => {
                             <h5>{item.postedBy.name}</h5>
                             {/* 2 div (1. image & 2.caption) */}
                             <div className="card-image">
-                                <img
-                                    src={item.photo} alt="Loading.."
-                                />
+                            <Video  loop muted autoplay="autoplay">
+                               <source  src={item.photo} type="video/webm" />
+                                 </Video>
                             </div>
                             <div className="card-content">
                                 <i className="material-icons" style={{ color: "red" }}>favorite</i>

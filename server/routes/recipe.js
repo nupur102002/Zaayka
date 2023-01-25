@@ -80,26 +80,26 @@ router.put('/unlike',requireLogin,(req,res)=>{
         }
       })
 })
-// router.put("/comment",requireLogin,(req,res)=>{
-//     const comment={
-//      text:req.body.text,
-//      postedBy:req.user._id
-//     }
-//     Recipe.findByIdAndUpdate(req.body.postId,{
-//          $push:{comments:comment}
-//      },{
-//          new:true
-//      })
-//      .populate("comments.postedBy","_id name")
-//      .populate("postedBy","_id name")
-//      .exec((err,result)=>{
-//          if(err){
-//              return res.status(422).json({error:err})
-//          }else{
-//              res.json(result)
-//          }
-//      })
-//  })
+router.put("/comment",requireLogin,(req,res)=>{
+    const comment={
+     text:req.body.text,
+     postedBy:req.user._id
+    }
+    Recipe.findByIdAndUpdate(req.body.postId,{
+         $push:{comments:comment}
+     },{
+         new:true
+     })
+     .populate("comments.postedBy","_id name")
+     .populate("postedBy","_id name")
+     .exec((err,result)=>{
+         if(err){
+             return res.status(422).json({error:err})
+         }else{
+             res.json(result)
+         }
+     })
+ })
  
 
 module.exports=router;

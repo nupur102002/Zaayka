@@ -14,6 +14,7 @@ const recipeSchema = new mongoose.Schema({
     type: String, 
     required: true,
   },
+   likes:[{type:ObjectId,ref:"User"}],
   postedBy: {
     type: ObjectId,
     ref: "User",      //this refer to user model

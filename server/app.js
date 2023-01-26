@@ -24,6 +24,7 @@ mongoose.connection.on('err',(err)=>{
 
  app.use(require('./routes/auth'));
  app.use(require('./routes/recipe'));
+ app.use(require('./routes/user'));
  
 
 app.listen(PORT,()=>{

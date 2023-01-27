@@ -12,11 +12,11 @@ router.get('/user/:id',requireLogin,(req,res)=>{      // here we get the "id" of
     .then(user=>{
          Recipe.find({postedBy:req.params.id})                  // if user exist then find the recipes of that user  // or query for find the recipes of that user
          .populate("postedBy","_id name")
-         .exec((err,posts)=>{
+         .exec((err,recipes)=>{
              if(err){
                  return res.status(422).json({error:err})
              }
-             res.json({user,posts})
+             res.json({user,recipes})
          })
     }).catch(err=>{
         return res.status(404).json({error:"User not found"})

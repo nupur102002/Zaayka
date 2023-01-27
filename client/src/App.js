@@ -5,6 +5,7 @@ import {BrowserRouter,Routes,Route,useNavigate} from "react-router-dom"
 import Home from "./components/screens/Home"
 import SignIn from "./components/screens/Login"
 import Profile from "./components/screens/Profile"
+import UserProfile from './components/screens/UserProfile'
 import SignUp from "./components/screens/Signup"
 import CreateRecipe from "./components/screens/CreateRecipe"
 
@@ -27,9 +28,10 @@ const Routing = ()=>{
     <Routes>
       <Route exact path="/" element={<Home />} />
         <Route path="/login" element={<SignIn />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route exact path="/profile" element={<Profile />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/create" element={<CreateRecipe />} /> 
+        <Route path="/profile/:userid" element={<UserProfile />} /> 
     </Routes>
   )
 }

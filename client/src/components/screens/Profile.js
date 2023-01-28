@@ -32,7 +32,7 @@ return (
             {/* dp part */}
             <div>
                 <img style={{ width: "160px", height: "160px", borderRadius: "80px", margin: "0px 0px" }}
-                    src="https://images.newindianexpress.com/uploads/user/imagelibrary/2022/8/21/w600X390/Hrithik_Roshan_PTI.jpg"
+                    src={state?state.pic:"loading.."}
                 />
 
                 {/* name part */}

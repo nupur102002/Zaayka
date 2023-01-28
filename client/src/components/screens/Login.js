@@ -69,6 +69,8 @@ const Login=()=>{
              
             <h5>
                 <Link to="/signup">Dont have an account ?</Link>
+                <br/>
+                <Link to="/reset">Forgot Password ?</Link>
             </h5>
             </div>
       </div>

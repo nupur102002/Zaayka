@@ -5,6 +5,7 @@ import M from 'materialize-css'
 
 const NavBar = () => {
   const [search,setSearch] = useState('')
+  const [userDetails,setUserDetails] = useState([])
   const  searchModal = useRef(null)
   const { state, dispatch } = useContext(UserContext)
   const navigate = useNavigate()
@@ -43,6 +44,22 @@ const NavBar = () => {
     }
   }
 
+  const fetchUsers = (query)=>{
+    setSearch(query)
+    fetch('/search-users',{
+      method:"post",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        query
+      })
+    }).then(res=>res.json())
+    .then(results=>{
+      setUserDetails(results.user)
+    })
+ }
+
   return (
     <nav>
       <div className="nav-wrapper white">
@@ -59,9 +76,15 @@ const NavBar = () => {
             type="text"
             placeholder="search users"
             value={search}
+            onChange={(e)=>fetchUsers(e.target.value)}
             />
              <ul className="collection">
-             <li></li>
+             {userDetails.map(item=>{
+                 return <Link to={item._id !== state._id ? "/profile/"+item._id:'/profile'} onClick={()=>{
+                   M.Modal.getInstance(searchModal.current).close()
+                   setSearch('')
+                 }}><li className="collection-item">{item.name}</li></Link> 
+               })}
               </ul>
           </div>
           <div className="modal-footer">

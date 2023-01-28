@@ -1,7 +1,7 @@
 import React,{useEffect,createContext,useReducer,useContext} from 'react';
 import './App.css';
 import Navbar from "./components/Navbar"
-import {BrowserRouter,Routes,Route,useNavigate} from "react-router-dom"
+import {BrowserRouter,Routes,Route,useNavigate,useLocation} from "react-router-dom"
 import Home from "./components/screens/Home"
 import SignIn from "./components/screens/Login"
 import Profile from "./components/screens/Profile"
@@ -17,12 +17,14 @@ export const UserContext = createContext()
 
 const Routing = ()=>{
   const navigate = useNavigate()
+  const location = useLocation()
   const {state,dispatch} = useContext(UserContext)
   useEffect(()=>{
     const user = JSON.parse(localStorage.getItem("user"))
     if(user){
       dispatch({type:"USER",payload:user})
     }else{
+      if(!location.pathname.startsWith('/reset'))
       navigate("/login")
     }
   },[])

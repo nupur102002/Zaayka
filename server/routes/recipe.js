@@ -8,7 +8,9 @@ const Recipe=mongoose.model("Recipe");
 //for all recipes 
 router.get("/allrecipe",requireLogin,(req,res)=>{
     Recipe.find()                         //finding all posts  without any condition
-    .populate("postedBy","_id name")  //   showing _id and name in postedBy
+    .populate("postedBy","_id name")
+    .populate("comments.postedBy","_id name")  //   showing _id and name in postedBy
+    .sort('-createdAt')
     .then(recipes=>{
         res.json({recipes:recipes})   
     })
@@ -23,6 +25,7 @@ router.get('/getsubrecipe',requireLogin,(req,res)=>{         // getsubpost -->> 
     Recipe.find({postedBy:{$in:req.user.following}})           // {postedBy:{$in:req.user.following}}-->>> here we quering one by one  posetdBy of each post ( of Post db ) in following array of user if it is present  then we will return 
     .populate("postedBy","_id name")
     .populate("comments.postedBy","_id name")
+    .sort('-createdAt')
     .then(recipes=>{
         res.json({recipes})
     })
@@ -71,7 +74,10 @@ router.put('/like',requireLogin,(req,res)=>{
         $push:{likes:req.user._id}
       },{
         new :true
-      }).exec((err,result)=>{
+      })
+      .populate("comments.postedBy","_id name")
+      .populate("postedBy","_id name")
+      .exec((err,result)=>{
         if(err){
             return res.status(422).json({error:err})
         }else{
@@ -84,7 +90,10 @@ router.put('/unlike',requireLogin,(req,res)=>{
         $pull:{likes:req.user._id}
       },{
         new :true
-      }).exec((err,result)=>{
+      })
+      .populate("comments.postedBy","_id name")
+      .populate("postedBy","_id name")
+      .exec((err,result)=>{
         if(err){
             return res.status(422).json({error:err})
         }else{

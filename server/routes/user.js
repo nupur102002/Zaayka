@@ -23,7 +23,6 @@ router.get('/user/:id',requireLogin,(req,res)=>{      // here we get the "id" of
     })
 })
 
-
 router.put('/follow',requireLogin,(req,res)=>{
     User.findByIdAndUpdate(req.body.followId,{
         $push:{followers:req.user._id}
@@ -45,6 +44,7 @@ router.put('/follow',requireLogin,(req,res)=>{
     }
     )
 })
+
 router.put('/unfollow',requireLogin,(req,res)=>{
     User.findByIdAndUpdate(req.body.unfollowId,{
         $pull:{followers:req.user._id}
@@ -65,5 +65,17 @@ router.put('/unfollow',requireLogin,(req,res)=>{
 
     }
     )
+})
+
+router.post('/search-users',(req,res)=>{
+    let userPattern = new RegExp("^"+req.body.query)
+    User.find({name:{$regex:userPattern}})
+    .select("_id name")
+    .then(user=>{
+        res.json({user})
+    }).catch(err=>{
+        console.log(err)
+    })
+
 })
 module.exports=router;

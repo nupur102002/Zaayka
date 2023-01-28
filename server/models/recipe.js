@@ -23,6 +23,6 @@ const recipeSchema = new mongoose.Schema({
     type: ObjectId,
     ref: "User",      //this refer to user model
   },
-});
+},{timestamps:true});
 
 mongoose.model("Recipe", recipeSchema);

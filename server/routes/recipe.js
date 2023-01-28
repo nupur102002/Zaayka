@@ -10,6 +10,7 @@ router.get("/allrecipe",requireLogin,(req,res)=>{
     Recipe.find()                         //finding all posts  without any condition
     .populate("postedBy","_id name")
     .populate("comments.postedBy","_id name")  //   showing _id and name in postedBy
+    .sort('-createdAt')
     .then(recipes=>{
         res.json({recipes:recipes})   
     })
@@ -24,6 +25,7 @@ router.get('/getsubrecipe',requireLogin,(req,res)=>{         // getsubpost -->> 
     Recipe.find({postedBy:{$in:req.user.following}})           // {postedBy:{$in:req.user.following}}-->>> here we quering one by one  posetdBy of each post ( of Post db ) in following array of user if it is present  then we will return 
     .populate("postedBy","_id name")
     .populate("comments.postedBy","_id name")
+    .sort('-createdAt')
     .then(recipes=>{
         res.json({recipes})
     })

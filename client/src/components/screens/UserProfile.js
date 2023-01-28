@@ -1,6 +1,8 @@
 import React,{useEffect,useState,useContext}  from "react";
 import { UserContext } from "../../App";
 import {Params, useParams} from "react-router-dom";
+import {DefaultPlayer as Video} from "react-html5video"
+import "react-html5video/dist/styles.css"
 
 const Profile=()=>{
     const [userProfile,setProfile] = useState(null)
@@ -133,7 +135,9 @@ const Profile=()=>{
                         {
                            userProfile.recipes.map(item=>{
                            return(
-                           <img key={item._id} className="item" src={item.photo} alt={item.title} />
+                            <Video key={item._id} className="item">
+                               <source  src={item.photo} alt={item.title} type="video/webm" />
+                        </Video>
                            )
                            })
                          } 

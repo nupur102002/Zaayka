@@ -137,7 +137,7 @@ const Home = () => {
                             }</h5>
                             {/* 2 div (1. image & 2.caption) */}
                             <div className="card-image">
-                            <Video  loop muted autoplay="autoplay">
+                            <Video loop muted autoPlay="autoPlay">
                                <source  src={item.photo} type="video/webm" />
                                  </Video>
                             </div>

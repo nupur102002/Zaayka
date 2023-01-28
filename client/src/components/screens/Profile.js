@@ -16,6 +16,7 @@ const Profile = () => {
         .then(result => {
             console.log(result);
             setPics(result.myrecipe)
+            
         })
 }, [])
 return (
@@ -40,9 +41,9 @@ return (
                 <h4>{state ? state.name : "loading"}</h4>
                 <h5>{state ? state.email : "loading"}</h5>
                 <div style={{ display: "flex", justifyContent: "space-between", width: "108%" }}>
-                    <h5>100 post </h5>
-                    <h5>100 follower </h5>
-                    <h5>100 following</h5>
+                <h6>{mypics.length} recipes</h6>
+                       <h6>{state?state.followers.length:"0"} followers</h6>
+                       <h6>{state?state.following.length:"0"} following</h6>
                 </div>
             </div>
         </div>

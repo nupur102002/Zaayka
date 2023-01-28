@@ -17,7 +17,19 @@ router.get("/allrecipe",requireLogin,(req,res)=>{
     })
 })
 
+router.get('/getsubrecipe',requireLogin,(req,res)=>{         // getsubpost -->> getting all recipe of all the person whose followed by me
 
+    // if postedBy in following
+    Recipe.find({postedBy:{$in:req.user.following}})           // {postedBy:{$in:req.user.following}}-->>> here we quering one by one  posetdBy of each post ( of Post db ) in following array of user if it is present  then we will return 
+    .populate("postedBy","_id name")
+    .populate("comments.postedBy","_id name")
+    .then(recipes=>{
+        res.json({recipes})
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+})
 //Create new recipe 
 router.post("/createrecipe",requireLogin,(req,res)=>{
     const {title,body,pic}=req.body;

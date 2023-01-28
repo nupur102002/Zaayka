@@ -15,6 +15,9 @@ const NavBar=()=>{
             <Link to="/create">Create Recipe</Link>
           </li>,
           <li>
+          <Link to="/myfollowingpost">My following Recipes</Link>
+        </li>,
+          <li>
             <button className="btn #c62828 red darken-3"
         onClick={()=>{
           localStorage.clear()

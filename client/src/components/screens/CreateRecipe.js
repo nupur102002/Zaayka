@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from "react-router-dom";
 import M from 'materialize-css';
 
@@ -8,6 +8,11 @@ const CreateRecipe = () => {
   const [body, setBody] = useState("")
   const [video, setVideo] = useState("")
   const [url, setUrl] = useState("")
+  const [type, setType] = useState("")
+  const typeselect = useRef(null)
+  useEffect(() => {
+    M.FormSelect.init(typeselect.current)
+  }, [])
   useEffect(() => {
     if (url) {
       fetch("/createrecipe", {
@@ -19,6 +24,7 @@ const CreateRecipe = () => {
         body: JSON.stringify({
           title,
           body,
+          type,
           pic: url
         })
       }).then(res => res.json())
@@ -42,7 +48,7 @@ const CreateRecipe = () => {
     const data = new FormData();
     data.append("file", video)
     data.append("upload_preset", "zaayka")
-    data.append("cloud_name", "dkp8phxth")             
+    data.append("cloud_name", "dkp8phxth")
     fetch("https://api.cloudinary.com/v1_1/dkp8phxth/video/upload", {    /**"https://api.cloudinary.com/v1_1/zaayka" - api base url   */
       method: "post",
       body: data
@@ -87,6 +93,16 @@ const CreateRecipe = () => {
         <div className="file-path-wrapper">
           <input className="file-path validate" type="text" />
         </div>
+      </div>
+
+      <div class="input-field col s12">
+        <select ref={typeselect} value={type} onChange={(e) => setType(e.target.value)}>
+          <option value="" disabled selected>Choose Recipe's Category</option>
+          <option value="1">North Indian</option>
+          <option value="2">South Indian</option>
+          <option value="3">Chinese</option>
+          <option value="4">Continental</option>
+        </select>
       </div>
       <button className="btn waves-effect waves-light #64b5f6 blue darken-1"
         onClick={() => recipeDetails()}>

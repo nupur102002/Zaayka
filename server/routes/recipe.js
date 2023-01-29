@@ -35,8 +35,8 @@ router.get('/getsubrecipe',requireLogin,(req,res)=>{         // getsubpost -->> 
 })
 //Create new recipe 
 router.post("/createrecipe",requireLogin,(req,res)=>{
-    const {title,body,pic}=req.body;
-    if(!title || !body || !pic )
+    const {title,body,pic,type}=req.body;
+    if(!title || !body || !pic || !type )
     {
         return res.status(422).json({error :"Please add all the fields"});
     }
@@ -46,6 +46,7 @@ router.post("/createrecipe",requireLogin,(req,res)=>{
         title,
         body,
         photo:pic,
+        category:type,
         postedBy:req.user
     })
     recipe.save().then(result=>{

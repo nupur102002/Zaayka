@@ -95,9 +95,9 @@ const CreateRecipe = () => {
           <input className="file-path validate" type="text" />
         </div>
       </div>
-      <div class="input-field col s12">
+      <div className="input-field col s12">
         <select ref={typeselect} value={type} onChange={(e) => setType(e.target.value)}>
-          <option value="" disabled selected>Choose Recipe's Category</option>
+          <option value="" disabled defaultValue>Choose Recipe's Category</option>
           <option value="1">North Indian</option>
           <option value="2">South Indian</option>
           <option value="3">Chinese</option>

@@ -25,9 +25,9 @@ useEffect(()=>{
     if(image){
      const data = new FormData()
      data.append("file",image)
-     data.append("upload_preset","webster")
-     data.append("cloud_name","harshks")
-     fetch("https://api.cloudinary.com/v1_1/harshks/image/upload",{
+     data.append("upload_preset","zaayka")
+     data.append("cloud_name","dkp8phxth")
+     fetch("https://api.cloudinary.com/v1_1/dkp8phxth/image/upload",{
          method:"post",
          body:data
      })
@@ -49,7 +49,7 @@ useEffect(()=>{
             console.log(result)
             localStorage.setItem("user",JSON.stringify({...state,pic:result.pic}))
             dispatch({type:"UPDATEPIC",payload:result.pic})
-            //window.location.reload()
+            window.location.reload()
         })
     
      })

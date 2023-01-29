@@ -23,6 +23,10 @@ const recipeSchema = new mongoose.Schema({
     type: ObjectId,
     ref: "User",      //this refer to user model
   },
+  category: {
+    type: Number,
+    required: true,
+  }
 },{timestamps:true});
 
 mongoose.model("Recipe", recipeSchema);

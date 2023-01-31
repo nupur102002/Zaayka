@@ -6,6 +6,7 @@ import "react-html5video/dist/styles.css"
 
 const Home = () => {
     const [data, setData] = useState([])
+    const [commentValue, setcommentValue] = useState("")
     const { state, dispatch } = useContext(UserContext)
     useEffect(() => {
         fetch('/getsubrecipe', {
@@ -96,6 +97,7 @@ const Home = () => {
                     }
                 })
                 setData(newData)
+                setcommentValue("")
             }).catch(err => {
                 console.log(err)
             })
@@ -158,7 +160,7 @@ const Home = () => {
                                     e.preventDefault()
                                     makeComment(e.target[0].value, item._id)
                                 }}>
-                                    <input type="text" placeholder="add a comment" />
+                                    <input value={commentValue} onChange={(e) => setcommentValue(e.target.value)} type="text" placeholder="add a comment" />
                                 </form>
                             </div>
                         </div>

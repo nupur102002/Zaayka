@@ -1,7 +1,7 @@
 import React ,{useState,useEffect} from "react";
 import {Link,useNavigate} from "react-router-dom"
 import M from "materialize-css"
-
+import Logo from "../logo";
 const Signup=()=>{
 
     const navigate = useNavigate();        /*instead of useHistory */
@@ -72,26 +72,32 @@ const Signup=()=>{
     }
     return  (
         <div className="mycard">
-            <div className="card auth-card input-field">
-              <h2>Zaayka</h2>
+ <div className="card auth-card input-field bg-body">
+              <Logo/>
+            <h2>Zaayka</h2>
               <input
+              className="ip"
               type="text"
-              placeholder="name"
+              placeholder="Name"
               value={name}
               onChange={(e)=>setName(e.target.value)}
               />
-              <input
-              type="text"
-              placeholder="email"
-              value={email}
-              onChange={(e)=>setEmail(e.target.value)}
-              />
-              <input
-              type="password"
-              placeholder="password"
-              value={password }
+             <input
+            className="ip"
+            
+            type="text"
+            placeholder="Email"  
+            value={email}
+              onChange={(e)=>setEmail(e.target.value)}          
+            />
+            <input
+           className="ip"
+            type="password"
+            placeholder="Password"
+            value={password }
               onChange={(e)=>setPassword(e.target.value)}
-              />
+            />
+           
                 <div className="file-field input-field">
             <div className="btn #64b5f6 blue darken-1">
                 <span>Upload pic</span>

@@ -2,7 +2,7 @@
   import React,{useState,useContext}  from "react";
   import {Link,useNavigate} from "react-router-dom";
   import { UserContext } from "../../App";
-  
+  import Logo from "../logo";
   import M from "materialize-css"
 
 const Login=()=>{
@@ -48,6 +48,7 @@ const Login=()=>{
     return (
         <div className="mycard">
           <div className="card auth-card input-field">
+          <Logo/>
             <h2>Zaayka</h2>
             <input
             type="text"

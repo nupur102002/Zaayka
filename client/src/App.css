@@ -3,7 +3,7 @@ a{
   color: black !important;
 }
 
-.brand-logo,h2{
+.brand-logo{
   font-family: 'Grand Hotel', cursive;
 }
 
@@ -70,7 +70,7 @@ a{
 .logo-holder{
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 45px;
 }
 .logo{
   width: 100px;
@@ -90,7 +90,7 @@ a{
     padding: 0.5rem;
     display:block;
     width:100%;
-    margin-top: 0.3rem;
+    margin-top: 0.rem;
     border-radius:5px;
   }
   .ip::placeholder{

@@ -47,18 +47,22 @@ const Login=()=>{
 }
     return (
         <div className="mycard">
-          <div className="card auth-card input-field">
-          <Logo/>
+         <div className="card auth-card input-field bg-body">
+              <Logo/>
             <h2>Zaayka</h2>
+         
             <input
+            className="ip"
+            
             type="text"
-            placeholder="email"  
+            placeholder="Email"  
             value={email}
               onChange={(e)=>setEmail(e.target.value)}          
             />
             <input
+           className="ip"
             type="password"
-            placeholder="password"
+            placeholder="Password"
             value={password }
               onChange={(e)=>setPassword(e.target.value)}
             />

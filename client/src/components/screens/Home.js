@@ -122,28 +122,7 @@ const Home = () => {
             
         })
     }
-    const deleteComment = (postId,commentId)=>{
-        fetch(`/deletecomment/${postId}/${commentId}`,{
-          method:"delete",
-          headers:{
-            "Content-Type":"application/json",
-            "Authorization":"Bearer "+localStorage.getItem("jwt")
-          }
-        }).then(res=>res.json())
-        .then(result=>{
-          const newData = data.map(item=>{
-            if(item._id===result._id){
-              result.postedBy=item.postedBy;
-              return result
-            }
-            else{
-              return item
-            }
-        })
-        setData(newData);
-        M.toast({ html: "Comment Deleted Successfully", classes: "#388e3c green darken-1" });
-      })
-      }
+   
     return (
         
         <div className="home">
@@ -181,13 +160,7 @@ const Home = () => {
                                 item.comments.map(record=>{
                                     return (
                                         <div>
-                                        <h6 key={record._id}><span style={{fontWeight:"500"}}>{record.postedBy.name} </span>{record.text}{record.postedBy._id == state._id 
-                                         && <i className="material-icons" style={{
-                                        float:"right"
-                                        }} 
-                                        onClick={()=>deleteComment(item._id,record._id)}
-                                       >delete</i>
-                                        }
+                                        <h6 key={record._id}><span style={{fontWeight:"500"}}>{record.postedBy.name} </span>
                                         
                                         </h6>
                                         

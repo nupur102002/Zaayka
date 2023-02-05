@@ -122,23 +122,7 @@ router.put("/comment",requireLogin,(req,res)=>{
      })
  })
 
-//  router.delete("/deletecomm/:postId",requireLogin,(req,res)=>{
-    
-//     Recipe.findByIdAndUpdate(req.body.postId,{
-//          $pull:{comments:comment}
-//      },{
-//          new:true
-//      })
-//      .populate("comments.postedBy","_id name")
-//      .populate("postedBy","_id name")
-//      .exec((err,result)=>{
-//          if(err){
-//              return res.status(422).json({error:err})
-//          }else{
-//              res.json(result)
-//          }
-//      })
-//  })
+
 router.delete('/deletecomment/:postId/:commentId', requireLogin, (req, res) => {
     Recipe.findById(req.params.postId)
     //   .populate("postedBy","_id name")

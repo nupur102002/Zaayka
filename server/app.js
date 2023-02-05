@@ -17,6 +17,10 @@ mongoose.connection.on('connected',()=>{
 mongoose.connection.on('err',(err)=>{
     console.log("err connecting",err);
 });
+app.use(
+    express.urlencoded({ extended: true })
+);
+    
 
  require('./models/user');
  require("./models/recipe");

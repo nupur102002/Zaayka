@@ -3,7 +3,7 @@ import { UserContext } from '../../App';
 import { Link } from "react-router-dom";
 import { DefaultPlayer as Video } from "react-html5video"
 import "react-html5video/dist/styles.css"
-
+import M from "materialize-css"
 const Home = () => {
     const [data, setData] = useState([])
     const [commentValue, setcommentValue] = useState("")
@@ -126,6 +126,7 @@ const Home = () => {
             })
     }
 
+   
     return (
 
         <div className="home">
@@ -160,7 +161,13 @@ const Home = () => {
                                 {
                                     item.comments.map(record => {
                                         return (
-                                            <h6 key={record._id}><span style={{ fontWeight: "500" }}>{record.postedBy.name} </span>{record.text}</h6>
+                                            <h6 key={record._id}><span style={{ fontWeight: "500" }}>{record.postedBy.name} </span>{record.text}{record.postedBy._id == state._id 
+    && <i className="material-icons" style={{
+   float:"right"
+   }} 
+   onClick={()=>deleteComment(item._id,record._id)}
+  >delete</i>
+   }</h6>
                                         )
                                     })
                                 }

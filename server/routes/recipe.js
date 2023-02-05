@@ -141,4 +141,39 @@ router.put("/comment",requireLogin,(req,res)=>{
     })
 })
 
+router.delete('/deletecomment/:postId/:commentId', requireLogin, (req, res) => {
+    Recipe.findById(req.params.postId)
+    //   .populate("postedBy","_id name")
+      .populate("comments.postedBy","_id name")
+      .exec((err,recipe)=>{
+          if(err || !recipe){
+            return res.status(422).json({message:"Some error occured!!"});
+          }
+          const comment = recipe.comments.find((comment)=>
+            comment._id.toString() === req.params.commentId.toString()
+            );
+            if (comment.postedBy._id.toString() === req.user._id.toString()) {
+                const removeIndex = recipe.comments
+                    .map(comment => comment._id.toString())
+                    .indexOf(req.params.commentId);
+                recipe.comments.splice(removeIndex, 1);
+                    recipe.save()
+                .then(result=>{
+                    res.json(result)
+                }).catch(err=>console.log(err));
+            }
+            // if (comment.postedBy._id.toString() === req.user._id.toString()) {
+            //     const removeIndex = recipe.comments
+            //     .map(comment => comment.postedBy._id.toString())     /// this code for removing all comments of user which post the comment
+            //     .indexOf(req.user._id);
+            //     recipe.comments.splice(removeIndex, 1);
+            //     recipe.save()
+            //     .then(result=>{
+            //         res.json(result)
+            //     }).catch(err=>console.log(err));
+            // }
+      })
+  });  
+
+
 module.exports=router;

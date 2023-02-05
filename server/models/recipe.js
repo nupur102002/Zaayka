@@ -25,7 +25,7 @@ const recipeSchema = new mongoose.Schema({
   },
   category: {
     type: Number,
-    required: true,
+    required: true
   }
 },{timestamps:true});
 

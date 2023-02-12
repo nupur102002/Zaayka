@@ -12,7 +12,7 @@ import SubscribedUserRecipe from './components/screens/SubscribesUserRecipe'
 import {reducer,initialState} from './reducers/userReducer'
 import Reset from './components/screens/Reset';
 import NewPassword from './components/screens/NewPassword';
-
+import Menu from "./components/screens/Menu"
 export const UserContext = createContext()
 
 const Routing = ()=>{
@@ -33,6 +33,7 @@ const Routing = ()=>{
       <Route exact path="/" element={<Home />} />
         <Route path="/login" element={<SignIn />} />
         <Route exact path="/profile" element={<Profile />} />
+        <Route exact path="/menu" element={<Menu />} /> 
         <Route path="/signup" element={<SignUp />} />
         <Route path="/create" element={<CreateRecipe />} /> 
         <Route path="/profile/:userid" element={<UserProfile />} /> 

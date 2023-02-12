@@ -33,6 +33,21 @@ router.get('/getsubrecipe',requireLogin,(req,res)=>{         // getsubpost -->> 
         console.log(err)
     })
 })
+
+// getting all south indian recipe
+router.get('/getsouth',requireLogin,(req,res)=>{         
+    Recipe.find({ category:2})          
+    .populate("postedBy","_id name")
+    .populate("comments.postedBy","_id name")
+    .sort('-createdAt')
+    .then(recipes=>{
+        res.json({recipes})
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+})
+
 //Create new recipe 
 router.post("/createrecipe",requireLogin,(req,res)=>{
     const {title,body,pic,type}=req.body;

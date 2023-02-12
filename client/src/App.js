@@ -16,6 +16,7 @@ import Menu from "./components/screens/Menu"
 import South from "./components/screens/South"
 import North from "./components/screens/North"
 import Chinese from './components/screens/Chinese';
+import Continental from './components/screens/Continental';
 export const UserContext = createContext()
 
 const Routing = ()=>{
@@ -40,6 +41,7 @@ const Routing = ()=>{
         <Route path="/menu/south" element={<South/>} /> 
         <Route path="/menu/north" element={<North/>} /> 
         <Route path="/menu/chinese" element={<Chinese/>} /> 
+        <Route path="/menu/continental" element={<Continental/>} /> 
         <Route path="/signup" element={<SignUp />} />
         <Route path="/create" element={<CreateRecipe />} /> 
         <Route path="/profile/:userid" element={<UserProfile />} /> 

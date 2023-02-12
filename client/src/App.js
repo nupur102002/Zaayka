@@ -14,7 +14,7 @@ import Reset from './components/screens/Reset';
 import NewPassword from './components/screens/NewPassword';
 import Menu from "./components/screens/Menu"
 export const UserContext = createContext()
-
+import South from "./components/screens/South"
 const Routing = ()=>{
   const navigate = useNavigate()
   const location = useLocation()
@@ -34,6 +34,7 @@ const Routing = ()=>{
         <Route path="/login" element={<SignIn />} />
         <Route exact path="/profile" element={<Profile />} />
         <Route exact path="/menu" element={<Menu />} /> 
+        <Route path="/menu/south" element={<South/>} /> 
         <Route path="/signup" element={<SignUp />} />
         <Route path="/create" element={<CreateRecipe />} /> 
         <Route path="/profile/:userid" element={<UserProfile />} /> 

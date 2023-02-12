@@ -47,6 +47,19 @@ router.get('/getsouth',requireLogin,(req,res)=>{
         console.log(err)
     })
 })
+// getting all  North indian  recipe
+router.get('/getnorth',requireLogin,(req,res)=>{         
+    Recipe.find({ category:1})          
+    .populate("postedBy","_id name")
+    .populate("comments.postedBy","_id name")
+    .sort('-createdAt')
+    .then(recipes=>{
+        res.json({recipes})
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+})
 
 //Create new recipe 
 router.post("/createrecipe",requireLogin,(req,res)=>{

@@ -11,7 +11,7 @@ const Continental = () => {
     const [commentValue, setcommentValue] = useState("")
     const { state, dispatch } = useContext(UserContext)
     useEffect(() => {
-        fetch('/getnorth', {
+        fetch('/getcontinental', {
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("jwt")
             }

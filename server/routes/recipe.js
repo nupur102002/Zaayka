@@ -61,9 +61,22 @@ router.get('/getsouth',requireLogin,(req,res)=>{
     })
 })
 
-// getting all  North indian  recipe
+// getting all  Chinese indian  recipe
 router.get('/getchinese',requireLogin,(req,res)=>{         
     Recipe.find({ category:3})          
+    .populate("postedBy","_id name")
+    .populate("comments.postedBy","_id name")
+    .sort('-createdAt')
+    .then(recipes=>{
+        res.json({recipes})
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+})
+// getting all  Continental indian  recipe
+router.get('/getcontinental',requireLogin,(req,res)=>{         
+    Recipe.find({ category:4})          
     .populate("postedBy","_id name")
     .populate("comments.postedBy","_id name")
     .sort('-createdAt')

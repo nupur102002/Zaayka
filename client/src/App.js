@@ -13,8 +13,10 @@ import {reducer,initialState} from './reducers/userReducer'
 import Reset from './components/screens/Reset';
 import NewPassword from './components/screens/NewPassword';
 import Menu from "./components/screens/Menu"
-export const UserContext = createContext()
 import South from "./components/screens/South"
+import North from "./components/screens/North"
+export const UserContext = createContext()
+
 const Routing = ()=>{
   const navigate = useNavigate()
   const location = useLocation()
@@ -35,6 +37,7 @@ const Routing = ()=>{
         <Route exact path="/profile" element={<Profile />} />
         <Route exact path="/menu" element={<Menu />} /> 
         <Route path="/menu/south" element={<South/>} /> 
+        <Route path="/menu/north" element={<North/>} /> 
         <Route path="/signup" element={<SignUp />} />
         <Route path="/create" element={<CreateRecipe />} /> 
         <Route path="/profile/:userid" element={<UserProfile />} /> 

@@ -9,7 +9,7 @@ const South = () => {
     const [commentValue, setcommentValue] = useState("")
     const { state, dispatch } = useContext(UserContext)
     useEffect(() => {
-        fetch('/getsouth', {
+        fetch('/getnorth', {
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("jwt")
             }

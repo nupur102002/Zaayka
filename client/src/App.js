@@ -15,6 +15,7 @@ import NewPassword from './components/screens/NewPassword';
 import Menu from "./components/screens/Menu"
 import South from "./components/screens/South"
 import North from "./components/screens/North"
+import Chinese from './components/screens/Chinese';
 export const UserContext = createContext()
 
 const Routing = ()=>{
@@ -38,6 +39,7 @@ const Routing = ()=>{
         <Route exact path="/menu" element={<Menu />} /> 
         <Route path="/menu/south" element={<South/>} /> 
         <Route path="/menu/north" element={<North/>} /> 
+        <Route path="/menu/chinese" element={<Chinese/>} /> 
         <Route path="/signup" element={<SignUp />} />
         <Route path="/create" element={<CreateRecipe />} /> 
         <Route path="/profile/:userid" element={<UserProfile />} /> 

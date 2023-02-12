@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 import { DefaultPlayer as Video } from "react-html5video"
 import "react-html5video/dist/styles.css"
 import M from "materialize-css"
-const South = () => {
+import Menu from "./Menu"
+
+const North = () => {
     const [data, setData] = useState([])
     const [commentValue, setcommentValue] = useState("")
     const { state, dispatch } = useContext(UserContext)
@@ -144,10 +146,13 @@ const South = () => {
       }
     return (
 
+       <div>
+        <Menu/>
         <div className="home">
             {
                 data.map(item => {
                     return (
+                       
                         <div className="card home-card" key={item._id}>
                             <h5><Link to={item.postedBy._id !== state._id ? "/profile/" + item.postedBy._id : "/profile"} >{item.postedBy.name}</Link> {item.postedBy._id == state._id
                                 && <i className="material-icons" style={{
@@ -199,7 +204,8 @@ const South = () => {
             }
 
         </div>
+       </div>
     )
 }
 
-export default South;
+export default North;

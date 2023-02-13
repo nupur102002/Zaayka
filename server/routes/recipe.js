@@ -8,8 +8,8 @@ const Recipe=mongoose.model("Recipe");
 //for all recipes 
 router.get("/allrecipe",requireLogin,(req,res)=>{
     Recipe.find()                         //finding all posts  without any condition
-    .populate("postedBy","_id name")
-    .populate("comments.postedBy","_id name")  //   showing _id and name in postedBy
+    .populate("postedBy","_id name pic")
+    .populate("comments.postedBy","_id name pic")  //   showing _id and name in postedBy
     .sort('-createdAt')
     .then(recipes=>{
         res.json({recipes:recipes})   
@@ -23,8 +23,8 @@ router.get('/getsubrecipe',requireLogin,(req,res)=>{         // getsubpost -->> 
 
     // if postedBy in following
     Recipe.find({postedBy:{$in:req.user.following}})           // {postedBy:{$in:req.user.following}}-->>> here we quering one by one  posetdBy of each post ( of Post db ) in following array of user if it is present  then we will return 
-    .populate("postedBy","_id name")
-    .populate("comments.postedBy","_id name")
+    .populate("postedBy","_id name pic")
+    .populate("comments.postedBy","_id name pic")
     .sort('-createdAt')
     .then(recipes=>{
         res.json({recipes})
@@ -36,8 +36,8 @@ router.get('/getsubrecipe',requireLogin,(req,res)=>{         // getsubpost -->> 
 // getting all  North indian  recipe
 router.get('/getnorth',requireLogin,(req,res)=>{         
     Recipe.find({ category:1})          
-    .populate("postedBy","_id name")
-    .populate("comments.postedBy","_id name")
+    .populate("postedBy","_id name pic")
+    .populate("comments.postedBy","_id name pic")
     .sort('-createdAt')
     .then(recipes=>{
         res.json({recipes})
@@ -50,8 +50,8 @@ router.get('/getnorth',requireLogin,(req,res)=>{
 // getting all south indian recipe
 router.get('/getsouth',requireLogin,(req,res)=>{         
     Recipe.find({ category:2})          
-    .populate("postedBy","_id name")
-    .populate("comments.postedBy","_id name")
+    .populate("postedBy","_id name pic")
+    .populate("comments.postedBy","_id name pic")
     .sort('-createdAt')
     .then(recipes=>{
         res.json({recipes})
@@ -64,8 +64,8 @@ router.get('/getsouth',requireLogin,(req,res)=>{
 // getting all  Chinese indian  recipe
 router.get('/getchinese',requireLogin,(req,res)=>{         
     Recipe.find({ category:3})          
-    .populate("postedBy","_id name")
-    .populate("comments.postedBy","_id name")
+    .populate("postedBy","_id name pic")
+    .populate("comments.postedBy","_id name pic")
     .sort('-createdAt')
     .then(recipes=>{
         res.json({recipes})
@@ -77,8 +77,8 @@ router.get('/getchinese',requireLogin,(req,res)=>{
 // getting all  Continental indian  recipe
 router.get('/getcontinental',requireLogin,(req,res)=>{         
     Recipe.find({ category:4})          
-    .populate("postedBy","_id name")
-    .populate("comments.postedBy","_id name")
+    .populate("postedBy","_id name pic")
+    .populate("comments.postedBy","_id name pic")
     .sort('-createdAt')
     .then(recipes=>{
         res.json({recipes})
@@ -115,7 +115,7 @@ router.post("/createrecipe",requireLogin,(req,res)=>{
 //  my uploaded recieps
 router.get("/myrecipe",requireLogin,(req,res)=>{  
     Recipe.find({postedBy: req.user._id})  
-    .populate("postedBy","_id name")  //it will expand only _id and name
+    .populate("postedBy","_id name pic")  //it will expand only _id and name
     .then(myrecipe=>{
         res.json({myrecipe})
     })
@@ -130,8 +130,8 @@ router.put('/like',requireLogin,(req,res)=>{
       },{
         new :true
       })
-      .populate("comments.postedBy","_id name")
-      .populate("postedBy","_id name")
+      .populate("comments.postedBy","_id name pic")
+      .populate("postedBy","_id name pic")
       .exec((err,result)=>{
         if(err){
             return res.status(422).json({error:err})
@@ -146,8 +146,8 @@ router.put('/unlike',requireLogin,(req,res)=>{
       },{
         new :true
       })
-      .populate("comments.postedBy","_id name")
-      .populate("postedBy","_id name")
+      .populate("comments.postedBy","_id name pic")
+      .populate("postedBy","_id name pic")
       .exec((err,result)=>{
         if(err){
             return res.status(422).json({error:err})
@@ -166,8 +166,8 @@ router.put("/comment",requireLogin,(req,res)=>{
      },{
          new:true
      })
-     .populate("comments.postedBy","_id name")
-     .populate("postedBy","_id name")
+     .populate("comments.postedBy","_id name pic")
+     .populate("postedBy","_id name pic")
      .exec((err,result)=>{
          if(err){
              return res.status(422).json({error:err})
@@ -198,7 +198,7 @@ router.put("/comment",requireLogin,(req,res)=>{
 router.delete('/deletecomment/:postId/:commentId', requireLogin, (req, res) => {
     Recipe.findById(req.params.postId)
     //   .populate("postedBy","_id name")
-      .populate("comments.postedBy","_id name")
+      .populate("comments.postedBy","_id name pic")
       .exec((err,recipe)=>{
           if(err || !recipe){
             return res.status(422).json({message:"Some error occured!!"});

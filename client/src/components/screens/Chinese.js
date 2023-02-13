@@ -204,6 +204,7 @@ const Chinese = () => {
             }
 
         </div>
+        <hr/>
        </div>
     )
 }

@@ -12,7 +12,7 @@ import "react-html5video/dist/styles.css"
 const Menu = ()=>{
    
   return (
-    
+    <>
     <div>
      
        
@@ -42,7 +42,12 @@ const Menu = ()=>{
       
    
     </div>
-    
+
+    <hr/>
+    <div style={{height:'100px',color:'GrayText'}}>
+      <h5 className='center-align'>Find Your Today's Meal here....</h5> 
+    </div>
+    </>
   )
     
 
